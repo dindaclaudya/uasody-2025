@@ -13,13 +13,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
+        // Buat user admin
         $user = \App\Models\User::factory()->create([
             'name' => 'Admin',
             'email' => 'admin@admin.com',
         ]);
 
         $user->assignRole('super_admin');
+
+        // ✅ Tambahkan seeder TaskSeeder
+        $this->call(TaskSeeder::class);
+
+        // ✅ Tambahkan seeder ProjectSeeder
+        $this->call(ProjectSeeder::class);
     }
 }
